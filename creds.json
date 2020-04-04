@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "nuevahacksbot",
+  "private_key_id": "18ced4d73add11ab15c77b5a0834f46471044a34",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCg+6jPNZ+YaAiH\ngLevRm13tVpp/gE/zwIC/peVg9ts7CIkdAFcP1E8i4XtzBIXst+iLpdnSQ2D3xPT\nCn4B9+ckEvr+nnr1tIHBJTA7NMEhN7eRG9cv3ALXkSipFNMyWh2M4w9Psl4BKRT6\nNAGeml4pxedyY6IP7+3Ssq5gDySGsUXWEEwuy+uH07vZ/rbByODl6Q6XrJ29LB3L\nGSkHcKZC3k41xkw2HV5TPq+lThjXIjgV1yJHnxsNfmvyeOQj/SReWnhC8/ul//ou\nTN4DH8vgOfsm3NHzyY5/J8/Toe8xM6fGrzrG085eCC6VQGdorN8Mzx9/SMzuag2Y\nWtJJBH1dAgMBAAECggEAAc9KcsfiyysSO3m8NuV3ChM5GLtxBqdcWa3EhPsGPrd5\n28iNEl0o2+Iip411f5w0bOWSsKfO1dZuad8ykvGXQN3QwgeEkNoOYl45aFT7vdSb\nRO+X7/MMeiFo4Fu6UxTVw7VywN3bti4gzP5ELWUFXXla1HufwQecuBNnp+9LpRL5\nCFTNCKf+gdkaPtRTWqRf5bfgBHjibK3w9BJClT1jA4dge03k8S/stDiZBuHJUKFA\n7Mn2VoRm/eLb5tvgBOALdE7NieZW3WZm2jGU7pQycwUL5cJ3SYfhNN55jG28Ehpo\nZPTIimctzRkh/Kbekk2F9Q8meei9ZmWHQAgaHnGHeQKBgQDXFhLQulBqajtqn9si\n7+XIT7SZF3EZi2hzHle5z/ME1EsXNdJAUfOQ3Vbak8bWWhyDT78H8zLNpyAF2ubC\nQa7Q2BMVc5zEazHMwrAUsucjmaFS54dbQHbQPSCniF6WWWIV4s42GJyT5Z77eWxe\nY420R892jq75P9Jg0R4x3bDldQKBgQC/mvSU7BcHNS9ZJ988RKWqqpxx59Au9GUx\n7IeG2Es+8/SXGYkc+db3422cFxDgh8Uk59aPb1sDM4QWGQnKwVxfCtZAFET36Bns\n7l8nP6vr3uCc2SM82PdGjeM5AZZkoGeBQj4kUpSgniJ1ozfxVQHjmJJeIDdiiE8A\nlcX/3xHzSQKBgQCv0/yno1ev1o4h+PJEWkbG/NmPOQmdL0jAqvJeFO/+Z6nHHJl3\nOUdaiobBAoNOobWjZuKslhRW6COWhb+U1+sYETtwkuV58INyd0lIcoPfp2ypAFq3\nrzgxvXbfXeytDf7QE2wt7uq5QMI5o6aCdvHVicrAiZ3iZlkOCoWbkDZXLQKBgDG9\nUyLZyvyXBOybGit2Ep+kXKqBKB0YWrDEG0aZHaeBAwy6l0qLXQ/K3Wh44Gu5Mydq\ne9uOZ80D8ZUe+NjGq2kM0iOeX20PtrM4CkGRGNtJZ3uwLqKcHE0XhlYFIHqM3XHD\ntYgOXAD6LC3nqh0fGTdxIwYGTPpqMkAPoW/UA7/pAoGAKDFdsOeA+gDTdFSD18Da\nelP3twkPUT9q5jIIdBYCkEUagUH/LvfYI4h4SGiyq1lLcNLH+tqCIyOCN8njTwi5\nHyKkHVwSYdg91198ptbpvVF0TGyZFFPKzuCpok/fjw6aYQQcB5pAy2UT+ZMYosYi\nBSVB3OEt/rkqbor4uLe8qLU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "darrow@nuevahacksbot.iam.gserviceaccount.com",
+  "client_id": "102146392775810855219",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/darrow%40nuevahacksbot.iam.gserviceaccount.com"
+}
