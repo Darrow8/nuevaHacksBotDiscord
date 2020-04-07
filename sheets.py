@@ -5,18 +5,19 @@ from oauth2client.service_account import ServiceAccountCredentials
 scope = ["https://spreadsheets.google.com/feeds","https://www.googleapis.com/auth/spreadsheets","https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
+creds2 = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
 
 client = gspread.authorize(creds)
-client2 = gspread.authorize(creds)
+client2 = gspread.authorize(creds2)
 
 
 sheetsA = client.open("NuevaHacks Online Hackathon (Responses)").sheet1
-sheetsB = client2.open("Create your Team! (Responses)").sheet1
+sheetsB = client2.open("NuevaHacks III Sign Up(Responses)").sheet1
 
 
 data1 = sheetsA.get_all_records()
 data2 = sheetsB.get_all_records()
-num = sheetsA.row_count
+# num = sheetsA.row_count
 
 
 
@@ -87,8 +88,36 @@ def getUsers(min,max):
         totalUsers.append(User(firstName,email,interests,discord,discordTag))
 
     return totalUsers
+
+def compareUsers(userSetA,userSetB):
+    #userSetA is signed up for original
+    #userSetB is signed up for online
+    oldEmailList = getData(userSetB,"Email Address")
+    currentEmailList = getData(userSetA,"Email Address")
+    emailList = []
+    for pos in range(0, len(oldEmailList)):
+        try:
+            currentEmailList.index(oldEmailList[pos])
+        except:
+            print("FAILED USER!" + oldEmailList[pos])
+            emailList.append(oldEmailList[pos])
+
+    #     print(getSingleData(userSetA,"Email Address",pos))
+    #     print()
+    #     if emailList[pos] == getSingleData(userSetA,"Email Address",pos):
+    #         emailList.remove(getSingleData(userSetA, "Email Address", pos))
+    #         print("removing " + getSingleData(userSetA, "Email Address", pos))
+
+
+
+    return emailList
+# compareUsers(data1,data2)
+# oldUsers = ["darhart@nuevaschool.org"]
+# print(compareUsers(data1,data2))
+# print(oldUsers.returnAll())
+oldUsers = compareUsers(data1,data2)
 # usersWithoutDiscord = getUsers(80,93)
-usersWithDiscord = getUsers(94,102)
+# usersWithDiscord = getUsers(94,102)
 # incorrectAll = getUsers(0,1)[0]
 # correct = getUsers(95,96)[0]
 # incorrectTag = getUsers(91,92)[0]
