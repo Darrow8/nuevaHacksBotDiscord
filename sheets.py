@@ -6,17 +6,22 @@ scope = ["https://spreadsheets.google.com/feeds","https://www.googleapis.com/aut
 
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
 creds2 = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
+creds3 = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
+
 
 client = gspread.authorize(creds)
 client2 = gspread.authorize(creds2)
+client3 = gspread.authorize(creds3)
 
 
 sheetsA = client.open("NuevaHacks Online Hackathon (Responses)").sheet1
 sheetsB = client2.open("NuevaHacks III Sign Up(Responses)").sheet1
+sheetsC = client3.open("Submitting Discord Information for Nuevahacks (Responses)").sheet1
 
 
 data1 = sheetsA.get_all_records()
 data2 = sheetsB.get_all_records()
+data3 = sheetsC.get_all_records()
 # num = sheetsA.row_count
 
 
@@ -37,6 +42,10 @@ class User:
         print("DISCORD TAG: " + str(self.discordTag))
         print("---------------------------------------------------")
 
+    def update(self,key,value):
+        setattr(self,key,value)
+        # print(self.key)
+        print(self.returnAll())
 
 #get data for all
 def getData(data,tag):
@@ -69,7 +78,7 @@ def getUsers(min,max):
                 discordTag = "#" + getSingleData(data1, "Discord Username (Username Only)", pos).split("#")[1]
             else:
                 #you fucking idiot...
-                discordTag = "#" + getSingleData(data1, "Discord Tag (Example #1234)", pos).split("#")[0]
+                discordTag = "#" + str(getSingleData(data1, "Discord Tag (Example #1234)", pos)).split("#")[0]
         else:
             #if you've fucked up in some way you're here
             if len(getSingleData(data1,"Discord Username (Username Only)",pos)) == 0:
@@ -99,23 +108,46 @@ def compareUsers(userSetA,userSetB):
         try:
             currentEmailList.index(oldEmailList[pos])
         except:
-            print("FAILED USER!" + oldEmailList[pos])
+            print(oldEmailList[pos])
             emailList.append(oldEmailList[pos])
 
-    #     print(getSingleData(userSetA,"Email Address",pos))
-    #     print()
-    #     if emailList[pos] == getSingleData(userSetA,"Email Address",pos):
-    #         emailList.remove(getSingleData(userSetA, "Email Address", pos))
-    #         print("removing " + getSingleData(userSetA, "Email Address", pos))
-
-
-
     return emailList
-# compareUsers(data1,data2)
-# oldUsers = ["darhart@nuevaschool.org"]
-# print(compareUsers(data1,data2))
-# print(oldUsers.returnAll())
-oldUsers = compareUsers(data1,data2)
+
+def updateUsers(currentUsers,data,sheet1):
+    #all the email addresses of
+    allNewData = getData(data,"Email Address")
+    # print(allNewData)
+    for i in range(len(currentUsers)):
+        try:
+            num = allNewData.index(currentUsers[i].email)
+            currentUsers[i].update("discord",getSingleData(data,"Please Enter your Discord Username only",num))
+            currentUsers[i].update("discordTag",getSingleData(data,"Please Enter your Discord Tag (example: #1234)",num))
+            # user.returnAll()
+            sheet1.update_cell(row=10,col=(1+i),value=currentUsers[i].discord)
+            sheet1.update_cell(row=11,col=(1+i),value=currentUsers[i].discordTag)
+
+
+
+        except:
+            print("HAVE NOT FILLED OUT")
+
+
+            # print("this user has not filled out form yet: " + user.email)
+        # user.update("Discord Username (Username Only)",newVal)
+        # user.update("Discord Tag (Example #1234)",newVal)
+
+
+    # sheetsA.update_cell(row=1,col=1,value="darrow")
+
+
+# updateUsers()
+
+allUsers = getUsers(0,10)
+updateUsers(allUsers,data3,sheetsA)
+# allUsers[0].update("name","")
+# print(allUsers[0].returnAll())
+
+# oldUsers = compareUsers(data1,data2)
 # usersWithoutDiscord = getUsers(80,93)
 # usersWithDiscord = getUsers(94,102)
 # incorrectAll = getUsers(0,1)[0]
