@@ -7,23 +7,42 @@ scope = ["https://spreadsheets.google.com/feeds","https://www.googleapis.com/aut
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
 creds2 = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
 creds3 = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
+creds4 = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
 
 
 client = gspread.authorize(creds)
 client2 = gspread.authorize(creds2)
 client3 = gspread.authorize(creds3)
+client4 = gspread.authorize(creds3)
 
 
 sheetsA = client.open("NuevaHacks Online Hackathon (Responses)").sheet1
 sheetsB = client2.open("NuevaHacks III Sign Up(Responses)").sheet1
 sheetsC = client3.open("Submitting Discord Information for Nuevahacks (Responses)").sheet1
+sheetsD = client3.open("Create your Team! (Responses)").sheet1
+
 
 
 data1 = sheetsA.get_all_records()
 data2 = sheetsB.get_all_records()
 data3 = sheetsC.get_all_records()
+data4 = sheetsD.get_all_records()
 # num = sheetsA.row_count
 
+class Team:
+    def __init__(self,users,name,desc,sht_desc):
+        self.users = users
+        self.name = name
+        self.desc = desc
+        self.sht_desc = sht_desc
+    def returnAll(self):
+        print("---------------------------------------------------")
+        print("NAME: " + str(self.name))
+        print("USERS: " + str(self.users))
+        print("DESCRIPTION: " + str(self.desc))
+        print("DISCORD USERNAME: " + str(self.discord))
+        print("SHORT DESCRIPTION: " + str(self.sht_desc))
+        print("---------------------------------------------------")
 
 
 class User:
@@ -142,8 +161,11 @@ def updateUsers(currentUsers,data,sheet1):
 
 # updateUsers()
 
-allUsers = getUsers(0,10)
-updateUsers(allUsers,data3,sheetsA)
+
+
+
+# allUsers = getUsers(0,10)
+# updateUsers(allUsers,data3,sheetsA)
 # allUsers[0].update("name","")
 # print(allUsers[0].returnAll())
 
