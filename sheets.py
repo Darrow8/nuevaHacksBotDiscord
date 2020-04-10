@@ -1,6 +1,8 @@
 import gspread
-
-
+import models as md
+import time
+import bot2 as bt
+#SPREADSHEET CODE
 from oauth2client.service_account import ServiceAccountCredentials
 scope = ["https://spreadsheets.google.com/feeds","https://www.googleapis.com/auth/spreadsheets","https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 
@@ -27,44 +29,9 @@ data1 = sheetsA.get_all_records()
 data2 = sheetsB.get_all_records()
 data3 = sheetsC.get_all_records()
 data4 = sheetsD.get_all_records()
-# num = sheetsA.row_count
-
-class Team:
-    def __init__(self,users,name,desc,sht_desc):
-        self.users = users
-        self.name = name
-        self.desc = desc
-        self.sht_desc = sht_desc
-    def returnAll(self):
-        print("---------------------------------------------------")
-        print("NAME: " + str(self.name))
-        print("USERS: " + str(self.users))
-        print("DESCRIPTION: " + str(self.desc))
-        print("DISCORD USERNAME: " + str(self.discord))
-        print("SHORT DESCRIPTION: " + str(self.sht_desc))
-        print("---------------------------------------------------")
 
 
-class User:
-    def __init__(self,name,email,interests,discord,discordTag):
-        self.name = name
-        self.email = email
-        self.interests = interests
-        self.discord = discord
-        self.discordTag = discordTag
-    def returnAll(self):
-        print("---------------------------------------------------")
-        print("NAME: " + str(self.name))
-        print("EMAIL: " + str(self.email))
-        print("INTERESTS: " + str(self.interests))
-        print("DISCORD USERNAME: " + str(self.discord))
-        print("DISCORD TAG: " + str(self.discordTag))
-        print("---------------------------------------------------")
 
-    def update(self,key,value):
-        setattr(self,key,value)
-        # print(self.key)
-        print(self.returnAll())
 
 #get data for all
 def getData(data,tag):
@@ -113,7 +80,7 @@ def getUsers(min,max):
                     # print("HELLO 3")
                     #you've fucked up!
                     discordTag = "EMPTY!"
-        totalUsers.append(User(firstName,email,interests,discord,discordTag))
+        totalUsers.append(md.User(firstName,email,interests,discord,discordTag))
 
     return totalUsers
 
@@ -144,12 +111,69 @@ def updateUsers(currentUsers,data,sheet1):
             # user.returnAll()
             sheet1.update_cell(row=10,col=(1+i),value=currentUsers[i].discord)
             sheet1.update_cell(row=11,col=(1+i),value=currentUsers[i].discordTag)
-
-
-
         except:
             print("HAVE NOT FILLED OUT")
 
+
+# DEPRECATED
+def detectTeams():
+    currentTeamsNum = int(getSingleData(data4,"Current Number Of Teams",0))
+    print(currentTeamsNum)
+    print(len(data4))
+    if(currentTeamsNum == len(data4)):
+        print("same ammount")
+
+        return False
+    else:
+        print("not same")
+        currentTeamsNum += 1
+        sheetsD.update_cell(col=6,row=2,value=int(currentTeamsNum))
+        return True
+
+def newTeamUsers():
+    numOfTeams = len(data4)
+    indexAbleTeams = len(data4) - 1
+    # print(data4[indexAbleTeams])
+    users = getSingleData(data4,"List members of your team (separate users between one comma and one space) Example: Darrow8, Povellesto",indexAbleTeams).split(", ")
+    return users
+
+def newTeamName():
+    numOfTeams = len(data4)
+    indexAbleTeams = len(data4) - 1
+    # print(data4[indexAbleTeams])
+    name = getSingleData(data4,"Write Your Project Title",indexAbleTeams)
+    return name
+
+
+async def teamCounter():
+    interval = 10
+    while True:
+        time.sleep(.5)
+        if round(time.perf_counter()) > interval:
+            interval += 10 # Adds 5 mins
+            data4 = sheetsD.get_all_records()
+            print(len(data4))
+            currentTeamsNum = int(getSingleData(data4, "Current Number Of Teams", 0))
+            print(currentTeamsNum)
+
+            if(len(data4) != currentTeamsNum):
+                print("NOT SAME!")
+                await bt.makeTeam(newTeamName(), newTeamUsers())
+                currentTeamsNum += 1
+                sheetsD.update_cell(col=6, row=2, value=int(currentTeamsNum))
+
+            else:
+                print("Same")
+        print("time",round(time.perf_counter()))
+
+
+
+# teamCounter()
+
+    #
+    # for pos in len(data4):
+    #    if(data4[pos] == )
+    #    print(getSingleData(data4,"Write Your Project Title",pos))
 
             # print("this user has not filled out form yet: " + user.email)
         # user.update("Discord Username (Username Only)",newVal)
@@ -160,22 +184,10 @@ def updateUsers(currentUsers,data,sheet1):
 
 
 # updateUsers()
-
-
-
-
-# allUsers = getUsers(0,10)
-# updateUsers(allUsers,data3,sheetsA)
-# allUsers[0].update("name","")
-# print(allUsers[0].returnAll())
-
-# oldUsers = compareUsers(data1,data2)
-# usersWithoutDiscord = getUsers(80,93)
-# usersWithDiscord = getUsers(94,102)
-# incorrectAll = getUsers(0,1)[0]
-# correct = getUsers(95,96)[0]
-# incorrectTag = getUsers(91,92)[0]
-
+# detectTeams()
+# allTeams()
+# newTeamUsers()
+# newTeamName()
 
 
 
