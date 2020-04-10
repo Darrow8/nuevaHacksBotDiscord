@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import time
 import sheets
+import server
 import randomcolor
 
 client = commands.Bot(command_prefix="!")
@@ -34,6 +35,8 @@ async def makeTeam(name,users):
     }
     await guild.create_text_channel(name + "-text", overwrites=overwrites, category=category, reason=None)
     await guild.create_voice_channel(name + "-voice", overwrites=overwrites, category=category, reason=None)
+
+    await server.newTeam(name,users)
 
     for userName in users:
         await addUserToTeam(name,userName)

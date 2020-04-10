@@ -18,6 +18,7 @@ async def on_member_join(member):
     role = discord.utils.get(member.guild.roles, id=689916456871133311)
     await member.add_roles(role)
     print("new participant" + str(member.display_name))
+    await member.send("Thank you for joining!")
 
 
 @client.event
@@ -36,6 +37,8 @@ async def on_message(message):
         Incoming Question!
         User: """ + message.author.name + " #" + message.author.discriminator + """
         Question: """ + message.content)
+
+
 
 
 

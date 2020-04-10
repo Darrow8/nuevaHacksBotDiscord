@@ -166,28 +166,8 @@ async def teamCounter():
                 print("Same")
         print("time",round(time.perf_counter()))
 
+# CODE FOR THE TEA
 
-
-# teamCounter()
-
-    #
-    # for pos in len(data4):
-    #    if(data4[pos] == )
-    #    print(getSingleData(data4,"Write Your Project Title",pos))
-
-            # print("this user has not filled out form yet: " + user.email)
-        # user.update("Discord Username (Username Only)",newVal)
-        # user.update("Discord Tag (Example #1234)",newVal)
-
-
-    # sheetsA.update_cell(row=1,col=1,value="darrow")
-
-
-# updateUsers()
-# detectTeams()
-# allTeams()
-# newTeamUsers()
-# newTeamName()
 
 
 
