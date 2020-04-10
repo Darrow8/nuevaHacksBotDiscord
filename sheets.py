@@ -1,7 +1,6 @@
 import gspread
 import models as md
 import time
-import bot2 as bt
 #SPREADSHEET CODE
 from oauth2client.service_account import ServiceAccountCredentials
 scope = ["https://spreadsheets.google.com/feeds","https://www.googleapis.com/auth/spreadsheets","https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
@@ -113,61 +112,3 @@ def updateUsers(currentUsers,data,sheet1):
             sheet1.update_cell(row=11,col=(1+i),value=currentUsers[i].discordTag)
         except:
             print("HAVE NOT FILLED OUT")
-
-
-# DEPRECATED
-def detectTeams():
-    currentTeamsNum = int(getSingleData(data4,"Current Number Of Teams",0))
-    print(currentTeamsNum)
-    print(len(data4))
-    if(currentTeamsNum == len(data4)):
-        print("same ammount")
-
-        return False
-    else:
-        print("not same")
-        currentTeamsNum += 1
-        sheetsD.update_cell(col=6,row=2,value=int(currentTeamsNum))
-        return True
-
-def newTeamUsers():
-    numOfTeams = len(data4)
-    indexAbleTeams = len(data4) - 1
-    # print(data4[indexAbleTeams])
-    users = getSingleData(data4,"List members of your team (separate users between one comma and one space) Example: Darrow8, Povellesto",indexAbleTeams).split(", ")
-    return users
-
-def newTeamName():
-    numOfTeams = len(data4)
-    indexAbleTeams = len(data4) - 1
-    # print(data4[indexAbleTeams])
-    name = getSingleData(data4,"Write Your Project Title",indexAbleTeams)
-    return name
-
-
-async def teamCounter():
-    interval = 10
-    while True:
-        time.sleep(.5)
-        if round(time.perf_counter()) > interval:
-            interval += 10 # Adds 5 mins
-            data4 = sheetsD.get_all_records()
-            print(len(data4))
-            currentTeamsNum = int(getSingleData(data4, "Current Number Of Teams", 0))
-            print(currentTeamsNum)
-
-            if(len(data4) != currentTeamsNum):
-                print("NOT SAME!")
-                await bt.makeTeam(newTeamName(), newTeamUsers())
-                currentTeamsNum += 1
-                sheetsD.update_cell(col=6, row=2, value=int(currentTeamsNum))
-
-            else:
-                print("Same")
-        print("time",round(time.perf_counter()))
-
-# CODE FOR THE TEA
-
-
-
-

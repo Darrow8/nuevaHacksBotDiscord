@@ -33,7 +33,6 @@ def updatePoints(teamName, pointIncrease):
         }
 
         team_ref.update(point_data)
-        # print('Document data: {}'.format(doc.to_dict()))
         print("update completed succesfully for team: " + str(teamName))
     except:
         print("ERROR ON UPDATEPOINTS()")

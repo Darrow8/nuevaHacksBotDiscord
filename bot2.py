@@ -1,7 +1,8 @@
+#RUN SHEETS2
 import discord
 from discord.ext import commands
 import time
-import sheets
+import sheets2 as sheets
 import server
 import randomcolor
 
@@ -11,8 +12,7 @@ guild = client.get_guild(688568885968109756)
 @client.event
 async def on_ready():
     print('bot2 is ready')
-    await sheets.teamCounter()
-
+    await sheets.totalCounter()
 
 
 @client.event
@@ -56,20 +56,6 @@ def hex_to_rgb(value):
     lv = len(value)
     return [int(value[i:i+lv//3], 16) for i in range(0, lv, lv//3)]
 
-
-# @client.event
-# async def running():
-#     while True:
-#         time.sleep(.5)
-#         print("online")
-#         print(time.perf_counter())
-#         if(sheets.teamCounter()):
-#             print("new team!")
-#             await makeTeam(sheets.newTeamName(),sheets.newTeamUsers())
-#             await running()
-#         else:
-#             print("checked")
-#             await running()
 
 
 
