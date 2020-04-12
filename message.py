@@ -31,7 +31,7 @@ def runFormError(user,form):
         server.sendmail(sender.mailFromAddress,user,message)
         server.quit()
     except:
-        print("EXTREME ERROR")
+        print("error on runFormError")
 
 def runTeamError(user):
     try:
@@ -61,4 +61,4 @@ def runTeamError(user):
         server.sendmail(sender.mailFromAddress,user,message)
         server.quit()
     except:
-        print("EXTREME ERROR")
+        print("error on runTeamError ")

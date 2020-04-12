@@ -84,8 +84,9 @@ async def teamCounter():
                 await bt.makeTeam(team_name, team_users)
                 sv.setTeamDB(team_name,team_users)
             except:
-                em = getSingleData(data4, "Email Address", 0)
-                md.runTeamError(em)
+                em = getSingleData(data4, "Email Address", len(data4) -1)
+                print(em)
+                # md.runTeamError(em)
         else:
             final = "SAME"
         print("teamCounter() running correctly, final for DB: " + final)

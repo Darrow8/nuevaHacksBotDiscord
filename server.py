@@ -23,10 +23,13 @@ auth = pyrebase_app.auth()
 
 
 def authSystem():
-    email = "support@nuevahacks.com"
-    password = "testuser123!"
-    auth.sign_in_with_email_and_password(email=email,password=password)
-    print('logged in!')
+    try:
+        email = "support@nuevahacks.com"
+        password = "testuser123!"
+        auth.sign_in_with_email_and_password(email=email,password=password)
+        print('logged in!')
+    except:
+        print("error on auth")
 
 
 authSystem()
