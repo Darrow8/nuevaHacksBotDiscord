@@ -112,3 +112,5 @@ def updateUsers(currentUsers,data,sheet1):
             sheet1.update_cell(row=11,col=(1+i),value=currentUsers[i].discordTag)
         except:
             print("HAVE NOT FILLED OUT")
+
+oldUsers = getUsers(0,1)

@@ -3,7 +3,7 @@ import models as md
 import time
 import bot2 as bt
 import server as sv
-#SPREADSHEET CODE
+# #SPREADSHEET CODE
 from oauth2client.service_account import ServiceAccountCredentials
 scope = ["https://spreadsheets.google.com/feeds","https://www.googleapis.com/auth/spreadsheets","https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 
@@ -30,10 +30,10 @@ data1 = sheetsA.get_all_records()
 data2 = sheetsB.get_all_records()
 data3 = sheetsC.get_all_records()
 data4 = sheetsD.get_all_records()
-
-
-
-
+#
+#
+#
+#
 #get data for all
 def getData(data,tag):
     Tag = tag
@@ -51,18 +51,19 @@ def getSingleData(data,tag,position):
 
     return Arr
 
-def newTeamUsers():
+def newTeamUsers(num_back):
     numOfTeams = len(data4)
-    indexAbleTeams = len(data4) - 1
-    # print(data4[indexAbleTeams])
-    users = getSingleData(data4,"List members of your team (separate users between one comma and one space) Example: Darrow8, Povellesto",indexAbleTeams).split(", ")
+    indexAbleTeams = len(data4) - num_back
+    print(indexAbleTeams)
+    print(data4[indexAbleTeams]["List ALL members of your team. Please ONLY put your team members discord username. DO NOT include their tag. DO NOT include their current nickname. (separate users between one comma and one space) Example: Darrow8, Povellesto"])
+    users = getSingleData(data4,"List ALL members of your team. Please ONLY put your team members discord username. DO NOT include their tag. DO NOT include their current nickname. (separate users between one comma and one space) Example: Darrow8, Povellesto",indexAbleTeams).split(", ")
     return users
 
-def newTeamName():
+def newTeamName(num_back):
     numOfTeams = len(data4)
-    indexAbleTeams = len(data4) - 1
+    indexAbleTeams = len(data4) - num_back
     # print(data4[indexAbleTeams])
-    name = getSingleData(data4,"Write Your Project Title",indexAbleTeams)
+    name = getSingleData(data4,"Add Your Team Name",indexAbleTeams)
     return name
 
 
@@ -72,12 +73,13 @@ async def teamCounter():
         final = "SAME"
         if(len(data4) != currentTeamsNum):
             final = "NOT SAME"
-            team_name = newTeamName()
-            team_users = newTeamUsers()
+            num_back = len(data4) - currentTeamsNum
+            team_name = newTeamName(num_back)
+            team_users = newTeamUsers(num_back)
             await bt.makeTeam(team_name, team_users)
             currentTeamsNum += 1
-            sheetsD.update_cell(col=6, row=2, value=int(currentTeamsNum))
-            sv.setTeamDB(team_name,team_users)
+            sheetsD.update_cell(col=7, row=2, value=int(currentTeamsNum))
+            # sv.setTeamDB(team_name,team_users)
 
         else:
             final = "SAME"
@@ -124,7 +126,7 @@ async def formSubmittedCounter():
         teamName = str(getSingleData(data, "Your team name (capitalization and spacing matters)", len(data) - 1))
         sv.updatePoints(teamName, pointInc)
         print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
-        sheetsE.update_cell(col=7, row=2, value=int(len(data)))
+        sheetsE.update_cell(col=8, row=2, value=int(len(data)))
 
     #SHEET F
     if (formSubmittedDetector(sheetsF)):
@@ -135,7 +137,7 @@ async def formSubmittedCounter():
         teamName = str(getSingleData(data, "Your team name (capitalization and spacing matters)", len(data) - 1))
         sv.updatePoints(teamName, pointInc)
         print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
-        sheetsF.update_cell(col=7, row=2, value=int(len(data)))
+        sheetsF.update_cell(col=8, row=2, value=int(len(data)))
 
     #SHEET G
     if (formSubmittedDetector(sheetsG)):
@@ -147,7 +149,7 @@ async def formSubmittedCounter():
         teamName = str(getSingleData(data, "Your team name (capitalization and spacing matters)", len(data) - 1))
         sv.updatePoints(teamName, pointInc)
         print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
-        sheetsG.update_cell(col=7, row=2, value=int(len(data)))
+        sheetsG.update_cell(col=8, row=2, value=int(len(data)))
 
     #SHEET H
     if (formSubmittedDetector(sheetsH)):
@@ -158,7 +160,7 @@ async def formSubmittedCounter():
         teamName = str(getSingleData(data, "Your team name (capitalization and spacing matters)", len(data) - 1))
         sv.updatePoints(teamName, pointInc)
         print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
-        sheetsH.update_cell(col=7, row=2, value=int(len(data)))
+        sheetsH.update_cell(col=8, row=2, value=int(len(data)))
 
 
     #SHEET I
@@ -170,7 +172,7 @@ async def formSubmittedCounter():
         teamName = str(getSingleData(data, "Your team name (capitalization and spacing matters)", len(data) - 1))
         sv.updatePoints(teamName, pointInc)
         print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
-        sheetsI.update_cell(col=7, row=2, value=int(len(data)))
+        sheetsI.update_cell(col=8, row=2, value=int(len(data)))
 
 
     #SHEET J
@@ -182,21 +184,35 @@ async def formSubmittedCounter():
         teamName = str(getSingleData(data, "Your team name (capitalization and spacing matters)", len(data) - 1))
         sv.updatePoints(teamName, pointInc)
         print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
-        sheetsJ.update_cell(col=7, row=2, value=int(len(data)))
+        sheetsJ.update_cell(col=8, row=2, value=int(len(data)))
 
     print("formSubmittedCounter() running correctly, final for FORMS: " + final)
 
 
 async def totalCounter():
-    interval = 40
+    interval = 30 #change!
     while True:
         time.sleep(.5)
         if round(time.perf_counter()) > interval:
-            interval += 40 # add time
+            interval += 60 # add time
 
-            await teamCounter()
-            await formSubmittedCounter()
-        #
+            # await teamCounter()
+            # await formSubmittedCounter()
+
         print(round(time.perf_counter()))
 
 
+
+
+def getAllTeams(min,max):
+    totalTeams = []
+    for pos in range(min, max):
+        name = getSingleData(data4,"Add Your Team Name",pos)
+        users = getSingleData(data4,"List ALL members of your team. Please ONLY put your team members discord username. DO NOT include their tag. DO NOT include their current nickname. (separate users between one comma and one space) Example: Darrow8, Povellesto",pos)
+        newTeam = md.Team(users=users,name=name,desc=None,sht_desc=None)
+        totalTeams.append(newTeam)
+        # newTeam.returnAll()
+
+    return totalTeams
+
+# print(getAllTeams(9,46)[0])

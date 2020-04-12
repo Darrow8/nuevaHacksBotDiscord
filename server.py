@@ -1,6 +1,6 @@
-import pyrebase
 import firebase_admin
 from firebase_admin import credentials,firestore
+# import sheets2 as st
 
 cred = credentials.Certificate('./serviceAccountCred.json')
 default_app = firebase_admin.initialize_app(cred)
@@ -39,5 +39,13 @@ def updatePoints(teamName, pointIncrease):
 
 
 
+
+def tryIt():
+    teams = st.getAllTeams(9,46)
+    for team in teams:
+        print("setting up " + team.name)
+        setTeamDB(team.name,team.users)
+
 # setTeamDB('example-team',["Darrow8"])
 # updatePoints('example-team',20)
+# tryIt()
