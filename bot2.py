@@ -30,12 +30,14 @@ async def makeTeam(name,users):
     await guild.create_role(name=name,color=discord.Color.orange())
 
     time.sleep(2)
-    role = discord.utils.get(guild.roles, name=name)
-    print("ROLE IS: ", role)
+    unique_role = discord.utils.get(guild.roles, name=name)
+    print("ROLE IS: ", unique_role)
     admin_role = discord.utils.get(guild.roles,id=689915377928765455)
+
+
     overwrites = {
         guild.default_role: discord.PermissionOverwrite(read_messages=False),
-        role: discord.PermissionOverwrite(read_messages=True),
+        unique_role: discord.PermissionOverwrite(read_messages=True),
         admin_role: discord.PermissionOverwrite(read_messages=True)
     }
 
@@ -44,7 +46,7 @@ async def makeTeam(name,users):
 
     for userName in users:
         goodUserName = userName.split("#")[0]
-        print(goodUserName)
+        # print(goodUserName)
         await addUserToTeam(name,goodUserName)
 
 
@@ -59,6 +61,7 @@ async def addUserToTeam(teamName,userName):
     print("USER IS: ", user)
     if(user != None):
         await user.add_roles(role)
+
 
 
 def hex_to_rgb(value):

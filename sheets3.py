@@ -18,23 +18,6 @@ client2 = gspread.authorize(creds2)
 client3 = gspread.authorize(creds3)
 client4 = gspread.authorize(creds3)
 
-#
-# sheetsA = client.open("NuevaHacks Online Hackathon (Responses)").sheet1
-# sheetsB = client2.open("NuevaHacks III Sign Up(Responses)").sheet1
-# sheetsC = client3.open("Submitting Discord Information for Nuevahacks (Responses)").sheet1
-# sheetsD = client3.open("Create your Team! (Responses)").sheet1
-
-
-
-
-# data1 = sheetsA.get_all_records()
-# data2 = sheetsB.get_all_records()
-# data3 = sheetsC.get_all_records()
-# data4 = sheetsD.get_all_records()
-#
-#
-#
-#
 #get data for all
 def getData(data,tag):
     Tag = tag
@@ -81,13 +64,13 @@ valK = "Submit a message  (Responses)"
 
 def formSubmittedDetector(sheet):
     data = sheet.get_all_records()
-    currentNumCounter = int(getSingleData(data, "Current Number Of Submissions", 0))
+    priorNumCounter = int(getSingleData(data, "Current Number Of Submissions", 0))
 
-    priorNumCounter = len(data)
+    currentNumCounter = len(data)
 
     if(currentNumCounter != priorNumCounter):
         # print("same num!")
-        currentNumCounter += 1
+        priorNumCounter += 1
         return True
     else:
         return False
@@ -195,5 +178,4 @@ async def totalCounter():
             await formSubmittedCounter()
 
         print("FORM SUBMITTER",round(time.perf_counter()))
-
 
