@@ -3,10 +3,7 @@ import discord
 from discord.ext import commands
 import time
 import sheets2 as sheets2
-
-import server
-import asyncio
-import randomcolor
+# import message as mp
 
 client = commands.Bot(command_prefix="!")
 guild = client.get_guild(688568885968109756)
@@ -49,8 +46,6 @@ async def makeTeam(name,users):
         goodUserName = userName.split("#")[0]
         print(goodUserName)
         await addUserToTeam(name,goodUserName)
-    # except:
-    #     print("DARROW! LOOK INTO ", name)
 
 
 @client.event
@@ -64,12 +59,6 @@ async def addUserToTeam(teamName,userName):
     print("USER IS: ", user)
     if(user != None):
         await user.add_roles(role)
-    else:
-        channelName = str(teamName + "-text")
-        channel = discord.utils.get(guild.channels, name=channelName)
-        print(channel)
-        channel.send(content="User " + userName + " was not added because the user who filled out the form added his/her name incorrectly. Please DM the NuevaHacks Helper to change this.")
-
 
 
 def hex_to_rgb(value):

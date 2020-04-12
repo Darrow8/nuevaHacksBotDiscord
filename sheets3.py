@@ -52,40 +52,6 @@ def getSingleData(data,tag,position):
 
     return Arr
 
-def newTeamUsers(num_back):
-    numOfTeams = len(data4)
-    indexAbleTeams = len(data4) - num_back
-    print(indexAbleTeams)
-    print(data4[indexAbleTeams]["List ALL members of your team. Please ONLY put your team members discord username. DO NOT include their tag. DO NOT include their current nickname. (separate users between one comma and one space) Example: Darrow8, Povellesto"])
-    users = getSingleData(data4,"List ALL members of your team. Please ONLY put your team members discord username. DO NOT include their tag. DO NOT include their current nickname. (separate users between one comma and one space) Example: Darrow8, Povellesto",indexAbleTeams).split(", ")
-    return users
-
-def newTeamName(num_back):
-    numOfTeams = len(data4)
-    indexAbleTeams = len(data4) - num_back
-    # print(data4[indexAbleTeams])
-    name = getSingleData(data4,"Add Your Team Name",indexAbleTeams)
-    return name
-
-
-async def teamCounter():
-        data4 = sheetsD.get_all_records()
-        currentTeamsNum = int(getSingleData(data4, "Current Number Of Teams", 0))
-        final = "SAME"
-        if(len(data4) != currentTeamsNum):
-            final = "NOT SAME"
-            num_back = len(data4) - currentTeamsNum
-            team_name = newTeamName(num_back)
-            team_users = newTeamUsers(num_back)
-            await bt.makeTeam(team_name, team_users)
-            currentTeamsNum += 1
-            sheetsD.update_cell(col=7, row=2, value=int(currentTeamsNum))
-            # sv.setTeamDB(team_name,team_users)
-
-        else:
-            final = "SAME"
-        print("teamCounter() running correctly, final for DB: " + final)
-
 # CODE FOR THE TEAM POINTS UPDATES
 
 credAll = ServiceAccountCredentials.from_json_keyfile_name("creds.json",scope)
@@ -203,17 +169,17 @@ async def formSubmittedCounter():
         print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
         sheetsJ.update_cell(col=8, row=2, value=int(len(data)))
 
-    #SHEET K
-    if (formSubmittedDetector(sheetsK)):
-        final = "NEW SUBMISSION"
-        data = sheetsK.get_all_records()
-
-        pointInc = int(getSingleData(data, "pointIncrease", 0))
-        teamName = str(getSingleData(data, "Your team name (capitalization and spacing matters)", len(data) - 1))
-        em = str(getSingleData(data, "Email Address", len(data) - 1))
-        sv.updatePoints(teamName, pointInc,em,valK)
-        print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
-        sheetsK.update_cell(col=8, row=2, value=int(len(data)))
+    # #SHEET K
+    # if (formSubmittedDetector(sheetsK)):
+    #     final = "NEW SUBMISSION"
+    #     data = sheetsK.get_all_records()
+    #
+    #     pointInc = int(getSingleData(data, "pointIncrease", 0))
+    #     teamName = str(getSingleData(data, "Your team name (capitalization and spacing matters)", len(data) - 1))
+    #     em = str(getSingleData(data, "Email Address", len(data) - 1))
+    #     sv.updatePoints(teamName, pointInc,em,valK)
+    #     print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
+    #     sheetsK.update_cell(col=8, row=2, value=int(len(data)))
 
     print("formSubmittedCounter() running correctly, final for FORMS: " + final)
 

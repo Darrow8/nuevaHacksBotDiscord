@@ -37,7 +37,7 @@ def updatePoints(teamName, pointIncrease,email,form):
         print("update completed succesfully for team: " + str(teamName))
     except:
         print("ERROR ON UPDATEPOINTS()")
-        mp.runEmail(email,form)
+        mp.runFormError(email,form)
 
 
 
