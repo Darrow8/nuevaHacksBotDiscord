@@ -1,3 +1,3 @@
 mailFromGmail = "smtp.gmail.com:587"
 mailFromAddress = "darhart@nuevaschool.org"
-password = ""#LOCAL!
+password = "20041126l"

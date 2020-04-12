@@ -2,13 +2,36 @@ import firebase_admin
 from firebase_admin import credentials,firestore
 # import sheets2 as st
 import message as mp
+import pyrebase
+
+firebaseConfig = {
+    "apiKey": "AIzaSyCj0jqBmHOFIdOdH98s2LDDLXX3Zit6QJg",
+    "authDomain": "nuevahacks-85464.firebaseapp.com",
+    "databaseURL": "https://nuevahacks-85464.firebaseio.com",
+    "projectId": "nuevahacks-85464",
+    "storageBucket": "nuevahacks-85464.appspot.com",
+    "messagingSenderId": "471411391657",
+    "appId": "1:471411391657:web:96f6ebe66153eb60863db8",
+    "measurementId": "G-Y4YHYXXJHB"
+};
 
 cred = credentials.Certificate('./serviceAccountCred.json')
 default_app = firebase_admin.initialize_app(cred)
+pyrebase_app = pyrebase.initialize_app(config=firebaseConfig)
 db = firestore.client()
+auth = pyrebase_app.auth()
 
 
+def authSystem():
+    email = "support@nuevahacks.com"
+    password = "testuser123!"
+    auth.sign_in_with_email_and_password(email=email,password=password)
+    print('logged in!')
+
+
+authSystem()
 def setTeamDB(teamName, users):
+    authSystem()
     try:
         team_data = {
             'name': teamName,
@@ -22,6 +45,7 @@ def setTeamDB(teamName, users):
 
 def updatePoints(teamName, pointIncrease,email,form):
     try:
+        authSystem()
         team_ref = db.collection('teams').document(teamName)
         doc = team_ref.get()
         print('Document data: {}'.format(doc.to_dict()))

@@ -79,9 +79,9 @@ async def teamCounter():
                 num_back = len(data4) - currentTeamsNum
                 team_name = newTeamName(num_back)
                 team_users = newTeamUsers(num_back)
-                await bt.makeTeam(team_name, team_users)
                 currentTeamsNum += 1
                 sheetsD.update_cell(col=7, row=2, value=int(currentTeamsNum))
+                await bt.makeTeam(team_name, team_users)
                 sv.setTeamDB(team_name,team_users)
             except:
                 em = getSingleData(data4, "Email Address", 0)
