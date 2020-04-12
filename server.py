@@ -1,6 +1,7 @@
 import firebase_admin
 from firebase_admin import credentials,firestore
 # import sheets2 as st
+import message as mp
 
 cred = credentials.Certificate('./serviceAccountCred.json')
 default_app = firebase_admin.initialize_app(cred)
@@ -19,7 +20,7 @@ def setTeamDB(teamName, users):
     except:
         print("ERROR ON SETTEAMDB()")
 
-def updatePoints(teamName, pointIncrease):
+def updatePoints(teamName, pointIncrease,email,form):
     try:
         team_ref = db.collection('teams').document(teamName)
         doc = team_ref.get()
@@ -36,15 +37,20 @@ def updatePoints(teamName, pointIncrease):
         print("update completed succesfully for team: " + str(teamName))
     except:
         print("ERROR ON UPDATEPOINTS()")
+        mp.runEmail(email,form)
+
+
+
+# updatePoints("Circulate",5)
 
 
 
 
-def tryIt():
-    teams = st.getAllTeams(9,46)
-    for team in teams:
-        print("setting up " + team.name)
-        setTeamDB(team.name,team.users)
+# def tryIt():
+#     teams = st.getAllTeams(9,49)
+#     for team in teams:
+#         print("setting up " + team.name)
+#         setTeamDB(team.name,team.users)
 
 # setTeamDB('example-team',["Darrow8"])
 # updatePoints('example-team',20)

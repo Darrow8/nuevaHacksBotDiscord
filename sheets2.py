@@ -101,6 +101,8 @@ sheetsI = clientAll.open("Submit Media Form (Responses)").sheet1
 sheetsJ = clientAll.open("Followed NuevaHacks (Responses)").sheet1
 
 
+
+
 def formSubmittedDetector(sheet):
     data = sheet.get_all_records()
     currentNumCounter = int(getSingleData(data, "Current Number Of Submissions", 0))
@@ -196,10 +198,10 @@ async def totalCounter():
         if round(time.perf_counter()) > interval:
             interval += 60 # add time
 
-            # await teamCounter()
+            await teamCounter()
             # await formSubmittedCounter()
 
-        print(round(time.perf_counter()))
+        print("TEAM COUNTER",round(time.perf_counter()))
 
 
 

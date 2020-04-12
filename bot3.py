@@ -2,8 +2,7 @@
 import discord
 from discord.ext import commands
 import time
-import sheets2 as sheets2
-
+import sheets3 as sheets3
 import server
 import asyncio
 import randomcolor
@@ -14,7 +13,7 @@ guild = client.get_guild(688568885968109756)
 @client.event
 async def on_ready():
     print('bot2 is ready')
-    await sheets2.totalCounter()
+    await sheets3.totalCounter()
 
 @client.event
 async def makeTeam(name,users):
