@@ -22,14 +22,16 @@ async def makeTeam(name,users):
 
         guild = client.get_guild(688568885968109756)
 
-        teamcategory = "TEAM 2"
-        category = discord.utils.get(guild.categories, name=teamcategory)
-
+        # teamcategory = "TEAM 2"
+        category = discord.utils.get(guild.categories, id=698668367053324361)
+        print(category)
         time.sleep(2)
 
         await guild.create_role(name=name,color=discord.Color.orange())
 
         time.sleep(2)
+        name = name.replace(" ","-")
+        name = name.replace("'","")
         unique_role = discord.utils.get(guild.roles, name=name)
         print("ROLE IS: ", unique_role)
         admin_role = discord.utils.get(guild.roles,id=689915377928765455)
@@ -59,6 +61,7 @@ async def addUserToTeam(teamName,userName):
         role = discord.utils.get(guild.roles, name=teamName)
         time.sleep(3)
         print("ROLE IS: ", role)
+
         user = discord.utils.get(client.get_all_members(), name=userName)
         time.sleep(2)
 
