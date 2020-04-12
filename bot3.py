@@ -8,7 +8,7 @@ guild = client.get_guild(688568885968109756)
 
 @client.event
 async def on_ready():
-    print('bot2 is ready')
+    print('bot3 is ready')
     await sheets3.totalCounter()
 
 

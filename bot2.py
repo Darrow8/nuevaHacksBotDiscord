@@ -25,13 +25,13 @@ async def makeTeam(name,users):
         # teamcategory = "TEAM 2"
         category = discord.utils.get(guild.categories, id=698668367053324361)
         print(category)
+        name = name.replace(" ","-")
+        name = name.replace("'","")
         time.sleep(2)
 
         await guild.create_role(name=name,color=discord.Color.orange())
 
         time.sleep(2)
-        name = name.replace(" ","-")
-        name = name.replace("'","")
         unique_role = discord.utils.get(guild.roles, name=name)
         print("ROLE IS: ", unique_role)
         admin_role = discord.utils.get(guild.roles,id=689915377928765455)
@@ -43,8 +43,8 @@ async def makeTeam(name,users):
             admin_role: discord.PermissionOverwrite(read_messages=True)
         }
 
-        await guild.create_text_channel(name + "-text", overwrites=overwrites, category=category, reason=None)
-        await guild.create_voice_channel(name + "-voice", overwrites=overwrites, category=category, reason=None)
+        await guild.create_text_channel(name + "-text", overwrites=overwrites, category=None, reason=None)
+        await guild.create_voice_channel(name + "-voice", overwrites=overwrites, category=None, reason=None)
 
         for userName in users:
             goodUserName = userName.split("#")[0]

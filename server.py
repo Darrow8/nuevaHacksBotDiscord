@@ -2,6 +2,7 @@ import firebase_admin
 from firebase_admin import credentials,firestore
 # import sheets2 as st
 import message as mp
+# import models as md
 import pyrebase
 
 firebaseConfig = {
@@ -32,7 +33,7 @@ def authSystem():
         print("error on auth")
 
 
-authSystem()
+# authSystem()
 def setTeamDB(teamName, users):
     authSystem()
     try:
@@ -66,19 +67,37 @@ def updatePoints(teamName, pointIncrease,email,form):
         print("ERROR ON UPDATEPOINTS()")
         mp.runFormError(email,form)
 
+def setPoints(teamName, setPoint,email,form):
+    try:
+        authSystem()
+        team_ref = db.collection('teams').document(teamName)
+        doc = team_ref.get()
+        print('Document data: {}'.format(doc.to_dict()))
 
+        # points_num = int('{}'.format(doc.to_dict()['points']))
 
-# updatePoints("Circulate",5)
+        # newPoints = int(pointIncrease + points_num)
+        point_data = {
+            'points': setPoint
+        }
+
+        team_ref.update(point_data)
+        print("update completed succesfully for team: " + str(teamName))
+    except:
+        print("ERROR ON UPDATEPOINTS()")
+        mp.runFormError(email,form)
+
+# updatePoints("Circulate",-5,"darhart@nuevaschool.org","TEST")
+
 
 
 
 
 # def tryIt():
-#     teams = st.getAllTeams(9,49)
+#     teams = st.getAllTeams(9,67)
 #     for team in teams:
-#         print("setting up " + team.name)
-#         setTeamDB(team.name,team.users)
-
-# setTeamDB('example-team',["Darrow8"])
-# updatePoints('example-team',20)
+#         print("killing " + team.name)
+#         setPoints(team.name,10,"darhart@nuevaschool.org","TEST")
+#
+#
 # tryIt()
