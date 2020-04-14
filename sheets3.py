@@ -50,6 +50,10 @@ sheetsH = clientAll.open("Helped Another Team Form (Responses)").sheet1
 sheetsI = clientAll.open("Submit Media Form (Responses)").sheet1
 sheetsJ = clientAll.open("Followed NuevaHacks (Responses)").sheet1
 sheetsK = clientAll.open("Submit a message  (Responses)").sheet1
+sheetsL = clientAll.open("Submit Getting Help Form (Responses)").sheet1
+sheetsM = clientAll.open("Helped Another Team Form (Responses)").sheet1
+sheetsN = clientAll.open("Submit UI Design Form (Responses)").sheet1
+sheetsO = clientAll.open("Submit Guide of the Day Form (Responses)").sheet1
 
 
 valE = "Invited A Friend (After Kickoff) (Responses)"
@@ -59,6 +63,10 @@ valH = "Helped Another Team Form (Responses)"
 valI = "Submit Media Form (Responses)"
 valJ = "Followed NuevaHacks (Responses)"
 valK = "Submit a message  (Responses)"
+valL = "Submit Getting Help Form (Responses)"
+valM = "Helped Another Team Form (Responses)"
+valN = "Submit UI Design Form (Responses)"
+valO = "Submit Guide of the Day Form (Responses)"
 
 
 
@@ -78,20 +86,20 @@ def formSubmittedDetector(sheet):
 async def formSubmittedCounter():
     final = "ALL GOOD"
 
-    #SHEET E
-    if (formSubmittedDetector(sheetsE)):
-        final = "NEW SUBMISSION"
-        data = sheetsE.get_all_records()
-        currentCount = int(getSingleData(data, "Current Number Of Submissions", 0))
-        print(currentCount)
-        pointInc = int(getSingleData(data, "pointIncrease", 0))
-        teamName = str(getSingleData(data, "Your team name (capitalization and spacing matters)", currentCount))
-        print(teamName)
-        em = str(getSingleData(data, "Email Address", len(data) - 1))
-        sv.updatePoints(teamName, pointInc,em,valE)
-        print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
-        currentCount += 1
-        sheetsE.update_cell(col=8, row=2, value=int(currentCount))
+    # #SHEET E
+    # if (formSubmittedDetector(sheetsE)):
+    #     final = "NEW SUBMISSION"
+    #     data = sheetsE.get_all_records()
+    #     currentCount = int(getSingleData(data, "Current Number Of Submissions", 0))
+    #     print(currentCount)
+    #     pointInc = int(getSingleData(data, "pointIncrease", 0))
+    #     teamName = str(getSingleData(data, "Your team name (capitalization and spacing matters)", currentCount))
+    #     print(teamName)
+    #     em = str(getSingleData(data, "Email Address", len(data) - 1))
+    #     sv.updatePoints(teamName, pointInc,em,valE)
+    #     print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
+    #     currentCount += 1
+    #     sheetsE.update_cell(col=8, row=2, value=int(currentCount))
 
     #SHEET F
     if (formSubmittedDetector(sheetsF)):
@@ -151,7 +159,7 @@ async def formSubmittedCounter():
         sv.updatePoints(teamName, pointInc,em,valI)
         print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
         currentCount += 1
-        sheetsI.update_cell(col=8, row=2, value=int(currentCount))
+        sheetsI.update_cell(col=14, row=2, value=int(currentCount))
 
 
     #SHEET J
@@ -184,6 +192,70 @@ async def formSubmittedCounter():
         print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
         currentCount += 1
         sheetsK.update_cell(col=8, row=2, value=int(currentCount))
+
+
+    #SHEET L
+    if (formSubmittedDetector(sheetsL)):
+        final = "NEW SUBMISSION"
+        data = sheetsL.get_all_records()
+        currentCount = int(getSingleData(data, "Current Number Of Submissions", 0))
+        print(currentCount)
+        pointInc = int(getSingleData(data, "pointIncrease", 0))
+        teamName = str(getSingleData(data, "The name of the team that helped you (capitalization and spacing matters)", currentCount))
+        print(teamName)
+        em = str(getSingleData(data, "Email Address", currentCount))
+        sv.updatePoints(teamName, pointInc,em,valL)
+        print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
+        currentCount += 1
+        sheetsL.update_cell(col=8, row=2, value=int(currentCount))
+
+
+    #SHEET M
+    if (formSubmittedDetector(sheetsM)):
+        final = "NEW SUBMISSION"
+        data = sheetsM.get_all_records()
+        currentCount = int(getSingleData(data, "Current Number Of Submissions", 0))
+        print(currentCount)
+        pointInc = int(getSingleData(data, "pointIncrease", 0))
+        teamName = str(getSingleData(data, "Your team name (capitalization and spacing matters)", currentCount))
+        print(teamName)
+        em = str(getSingleData(data, "Email Address", currentCount))
+        sv.updatePoints(teamName, pointInc,em,valM)
+        print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
+        currentCount += 1
+        sheetsM.update_cell(col=8, row=2, value=int(currentCount))
+
+
+    #SHEET N
+    if (formSubmittedDetector(sheetsN)):
+        final = "NEW SUBMISSION"
+        data = sheetsN.get_all_records()
+        currentCount = int(getSingleData(data, "Current Number Of Submissions", 0))
+        print(currentCount)
+        pointInc = int(getSingleData(data, "pointIncrease", 0))
+        teamName = str(getSingleData(data, "Your team name (capitalization and spacing matters)", currentCount))
+        print(teamName)
+        em = str(getSingleData(data, "Email Address", currentCount))
+        sv.updatePoints(teamName, pointInc,em,valN)
+        print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
+        currentCount += 1
+        sheetsN.update_cell(col=8, row=2, value=int(currentCount))
+
+
+    #SHEET O
+    if (formSubmittedDetector(sheetsO)):
+        final = "NEW SUBMISSION"
+        data = sheetsO.get_all_records()
+        currentCount = int(getSingleData(data, "Current Number Of Submissions", 0))
+        print(currentCount)
+        pointInc = int(getSingleData(data, "pointIncrease", 0))
+        teamName = str(getSingleData(data, "Your team name (capitalization and spacing matters)", currentCount))
+        print(teamName)
+        em = str(getSingleData(data, "Email Address", currentCount))
+        sv.updatePoints(teamName, pointInc,em,valO)
+        print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
+        currentCount += 1
+        sheetsO.update_cell(col=8, row=2, value=int(currentCount))
 
     print("formSubmittedCounter() running correctly, final for FORMS: " + final)
 

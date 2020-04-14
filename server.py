@@ -87,7 +87,7 @@ def setPoints(teamName, setPoint,email,form):
         print("ERROR ON UPDATEPOINTS()")
         mp.runFormError(email,form)
 
-# updatePoints("Circulate",-5,"darhart@nuevaschool.org","TEST")
+updatePoints("Quiz You",300,"darhart@nuevaschool.org","TEST")
 
 
 

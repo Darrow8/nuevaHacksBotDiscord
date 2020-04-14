@@ -72,6 +72,10 @@ async def on_message(message):
         Incoming Question!
         User: """ + message.author.name + " #" + message.author.discriminator + """
         Question: """ + message.content)
+        exclamation = client.get_emoji(id=)
+        print(exclamation)
+        # await message.add_reaction(emoji=exclamation)
+
 
 
 
