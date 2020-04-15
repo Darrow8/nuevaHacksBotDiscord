@@ -11,8 +11,8 @@ guild = client.get_guild(688568885968109756)
 @client.event
 async def on_ready():
     print('bot2 is ready')
-    await sheets2.totalCounter()
-
+    # await sheets2.totalCounter()
+    await sheets2.teamCounter()
 @client.event
 async def makeTeam(name,users):
     print("Reached MakeTeam Func!")

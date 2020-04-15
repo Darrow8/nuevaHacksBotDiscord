@@ -92,16 +92,16 @@ async def teamCounter():
         print("teamCounter() running correctly, final for DB: " + final)
 
 
-async def totalCounter():
-    interval = 30 #change!
-    while True:
-        time.sleep(.5)
-        if round(time.perf_counter()) > interval:
-            interval += 60 # add time
-            await teamCounter()
-            # await formSubmittedCounter()
-
-        print("TEAM COUNTER: ",round(time.perf_counter()))
+# async def totalCounter():
+#     interval = 30 #change!
+#     while True:
+#         time.sleep(.5)
+#         if round(time.perf_counter()) > interval:
+#             interval += 60 # add time
+#             await teamCounter()
+#             # await formSubmittedCounter()
+#
+#         print("TEAM COUNTER: ",round(time.perf_counter()))
 
 
 

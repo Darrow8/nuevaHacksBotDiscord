@@ -96,7 +96,7 @@ def setPoints(teamName, setPoint,email,form):
 #     teams = st.getAllTeams(9,67)
 #     for team in teams:
 #         print("killing " + team.name)
-#         setPoints(team.name,10,"darhart@nuevaschool.org","TEST")
+# setPoints("HackOverflow",2000,"darhart@nuevaschool.org","TEST")
 #
 #
 # tryIt()
