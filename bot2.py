@@ -23,7 +23,7 @@ async def makeTeam(name,users):
         guild = client.get_guild(688568885968109756)
 
         # teamcategory = "TEAM 2"
-        category = discord.utils.get(guild.categories, id=698668367053324361)
+        category = discord.utils.get(guild.categories, id=700393662651301959)
         print(category)
         name = name.replace(" ","-")
         name = name.replace("'","")
@@ -43,8 +43,8 @@ async def makeTeam(name,users):
             admin_role: discord.PermissionOverwrite(read_messages=True)
         }
 
-        await guild.create_text_channel(name + "-text", overwrites=overwrites, category=None, reason=None)
-        await guild.create_voice_channel(name + "-voice", overwrites=overwrites, category=None, reason=None)
+        await guild.create_text_channel(name + "-text", overwrites=overwrites, category=category, reason=None)
+        await guild.create_voice_channel(name + "-voice", overwrites=overwrites, category=category, reason=None)
 
         for userName in users:
             goodUserName = userName.split("#")[0]

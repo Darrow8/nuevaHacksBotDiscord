@@ -2,6 +2,7 @@
 import discord
 from discord.ext import commands
 import sheets3 as sheets3
+# import dataAnalysis as dt
 import time
 
 client = commands.Bot(command_prefix="!")
@@ -11,7 +12,7 @@ guild = client.get_guild(688568885968109756)
 async def on_ready():
     print('bot3 is ready')
     await sheets3.totalCounter()
-    # await getusers("Quiz You")
+    # await dt.updateVals()
 
 # @client.commands
 

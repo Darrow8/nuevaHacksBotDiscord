@@ -87,10 +87,16 @@ def setPoints(teamName, setPoint,email,form):
         print("ERROR ON UPDATEPOINTS()")
         mp.runFormError(email,form)
 
+async def getAllPoints():
+    team_ref = db.collection('teams').stream()
+    data = []
+    for doc in team_ref:
+        # print(u'{} => {}'.format(doc.id, doc.to_dict()))
+        goodDoc = doc.to_dict()
+        data.append(goodDoc["points"])
 
 
-
-
+    return data
 
 # def tryIt():
 #     teams = st.getAllTeams(9,67)

@@ -55,8 +55,9 @@ sheetsL = clientAll.open("Submit Getting Help Form (Responses)").sheet1
 sheetsM = clientAll.open("Helped Another Team Form (Responses)").sheet1
 sheetsN = clientAll.open("Submit UI Design Form (Responses)").sheet1
 sheetsO = clientAll.open("Submit Guide of the Day Form (Responses)").sheet1
-# sheetsP = clientAll.open("team roundup leaderboard").sheet1
+sheetsP = clientAll.open("team roundup leaderboard").worksheet('aaref hilaly')
 sheetsQ = clientAll.open("Submit Repository Form (Responses)").sheet1
+# sheetsR = clientAll.open("Team Points Leaderboard Gap").sheet1
 
 
 valE = "Invited A Friend (After Kickoff) (Responses)"
@@ -197,19 +198,19 @@ async def formSubmittedCounter():
 
     # ADD AGAIN LATER!
     #SHEET N
-    # if (formSubmittedDetector(sheetsN)):
-    #     final = "NEW SUBMISSION"
-    #     data = sheetsN.get_all_records()
-    #     currentCount = int(getSingleData(data, "Current Number Of Submissions", 0))
-    #     print(currentCount)
-    #     pointInc = int(getSingleData(data, "pointIncrease", 0))
-    #     teamName = str(getSingleData(data, "Your team name (capitalization and spacing matters)", currentCount))
-    #     print(teamName)
-    #     em = str(getSingleData(data, "Email Address", currentCount))
-    #     sv.updatePoints(teamName, pointInc,em,valN)
-    #     print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
-    #     currentCount += 1
-    #     sheetsN.update_cell(col=8, row=2, value=int(currentCount))
+    if (formSubmittedDetector(sheetsN)):
+        final = "NEW SUBMISSION"
+        data = sheetsN.get_all_records()
+        currentCount = int(getSingleData(data, "Current Number Of Submissions", 0))
+        print(currentCount)
+        pointInc = int(getSingleData(data, "pointIncrease", 0))
+        teamName = str(getSingleData(data, "Your team name (capitalization and spacing matters)", currentCount))
+        print(teamName)
+        em = str(getSingleData(data, "Email Address", currentCount))
+        sv.updatePoints(teamName, pointInc,em,valN)
+        print("updated points score for " + teamName + " added " + str(pointInc) + " points.")
+        currentCount += 1
+        sheetsN.update_cell(col=12, row=2, value=int(currentCount))
 
     print("SHEET O")
     #SHEET O
@@ -248,16 +249,18 @@ async def formSubmittedCounter():
     print("formSubmittedCounter() running correctly, final for FORMS: " + final)
 
 
-# async def getUserRoles():
-#     # teamGrouped = []
-#     data = sheetsP.get_all_records()
-#     teams = (getData(data,"Actual Meeting"))
-#     for i in range(len(teams)):
-#         sheetsP.update_cell(col=2, row=(i + 2), value=int(await bt.getusers(teams[i])))
-#         print(teams[i] +" "+ str(await bt.getusers(teams[i])))
-
-
-    # print(teamGrouped)
+async def getUserRoles():
+    data = sheetsP.get_all_records()
+    teams = (getData(data,"Teams in Form"))
+    for i in range(len(teams)):
+        sheetsP.update_cell(col=2, row=(i + 2), value=int(await bt.getusers(teams[i])))
+        print(teams[i] +" "+ str(await bt.getusers(teams[i])))
+#
+# async def addAllTeamPoints():
+#     arr = await sv.getAllPoints()
+#     print(arr)
+#     for pts in range(len(arr)):
+#         sheetsR.update_cell(col=2,row=pts + 2,value=arr[pts])
 
 
 
@@ -266,8 +269,8 @@ async def totalCounter():
     while True:
         time.sleep(.5)
         if round(time.perf_counter()) > interval:
-            interval += 60 # add time
-
+            interval += 40 # add time
+            # await addAllTeamPoints()
             # await getUserRoles()
             await formSubmittedCounter()
         print("SUBMITTER",round(time.perf_counter()))
