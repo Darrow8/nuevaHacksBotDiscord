@@ -6,14 +6,7 @@ import message as mp
 import pyrebase
 
 firebaseConfig = {
-    "apiKey": "AIzaSyCj0jqBmHOFIdOdH98s2LDDLXX3Zit6QJg",
-    "authDomain": "nuevahacks-85464.firebaseapp.com",
-    "databaseURL": "https://nuevahacks-85464.firebaseio.com",
-    "projectId": "nuevahacks-85464",
-    "storageBucket": "nuevahacks-85464.appspot.com",
-    "messagingSenderId": "471411391657",
-    "appId": "1:471411391657:web:96f6ebe66153eb60863db8",
-    "measurementId": "G-Y4YHYXXJHB"
+//DELETED
 };
 
 cred = credentials.Certificate('./serviceAccountCred.json')
