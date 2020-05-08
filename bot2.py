@@ -6,7 +6,7 @@ import sheets2 as sheets2
 # import message as mp
 
 client = commands.Bot(command_prefix="!")
-guild = client.get_guild(688568885968109756)
+guild = client.get_guild(#DELETED)
 
 @client.event
 async def on_ready():
@@ -20,10 +20,10 @@ async def makeTeam(name,users):
         name = name.lower()
         print("TEAM NAME IS: ", name)
 
-        guild = client.get_guild(688568885968109756)
+        guild = client.get_guild(#DELETED)
 
         # teamcategory = "TEAM 2"
-        category = discord.utils.get(guild.categories, id=700393662651301959)
+        category = discord.utils.get(guild.categories, id=#DELETED)
         print(category)
         name = name.replace(" ","-")
         name = name.replace("'","")
@@ -34,7 +34,7 @@ async def makeTeam(name,users):
         time.sleep(2)
         unique_role = discord.utils.get(guild.roles, name=name)
         print("ROLE IS: ", unique_role)
-        admin_role = discord.utils.get(guild.roles,id=689915377928765455)
+        admin_role = discord.utils.get(guild.roles,id=#DELETED)
 
 
         overwrites = {
@@ -56,7 +56,7 @@ async def makeTeam(name,users):
 @client.event
 async def addUserToTeam(teamName,userName):
     try:
-        guild = client.get_guild(688568885968109756)
+        guild = client.get_guild(#DELETED)
 
         role = discord.utils.get(guild.roles, name=teamName)
         time.sleep(3)
@@ -80,6 +80,6 @@ def hex_to_rgb(value):
 
 
 
-client.run('NjkyNTQwMTE3MTMwMjgwOTkz.XnwB1w.KPjxivkUV6AtcH8xMU8Kx8Xis1Y')
+client.run(#DELETED)
 
 
