@@ -6,7 +6,7 @@ import sheets3 as sheets3
 import time
 
 client = commands.Bot(command_prefix="!")
-guild = client.get_guild(688568885968109756)
+guild = client.get_guild(#DELETED)
 
 @client.event
 async def on_ready():
@@ -19,7 +19,7 @@ async def on_ready():
 @client.command(pass_context=True)
 async def getusers(teamName):
     totalCount = []
-    guild = client.get_guild(688568885968109756)
+    guild = client.get_guild(#DELETED)
     role = discord.utils.get(guild.roles, name=teamName)
     # user = discord.utils.get(client.get_all_members(), name=name)
     time.sleep(3)
@@ -34,6 +34,6 @@ async def getusers(teamName):
 
 
 
-client.run('NjkyNTQwMTE3MTMwMjgwOTkz.XnwB1w.KPjxivkUV6AtcH8xMU8Kx8Xis1Y')
+client.run('#DELETED')
 
 
