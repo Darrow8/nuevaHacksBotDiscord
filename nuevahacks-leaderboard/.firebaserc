@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "nuevahacks-85464": {
+      "hosting": {
+        "nuevahacks-leaderboard": [
+          "nuevahacks-85464"
+        ]
+      }
+    }
+  }
+}
