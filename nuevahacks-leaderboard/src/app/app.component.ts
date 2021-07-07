@@ -9,31 +9,17 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit{
   title = 'nuevahacks-leaderboard';
-  public items: Observable<any[]>;
+  public teams: Observable<any[]>;
+  public tasks: Observable<any[]>;
 
   constructor(private firestore: AngularFirestore) {
-    // firestore.collection('teams').valueChanges().subscribe((data)=>{
-    //   console.log('new')
-    //   console.log(data);
-    //   this.items = data;
 
-    //   this.items.sort(function(a: any, b: any) {
-    //     return a.points - b.points;
-    //   });
-    // },(err)=>{console.log(err)},()=>{
-    //   console.log('finished')
-    // })
 
-    this.items =  firestore.collection('teams').valueChanges();
+    this.teams =  firestore.collection('teams').valueChanges();
+    this.tasks = firestore.collection('tasks').valueChanges();
 
-  //   .map((data) => {
-  //     data.sort((a, b) => {
-  //         return a < b ? -1 : 1;
-  //      });
-  //     return data;
-  //  });
-    
-    console.log(firestore.collection('teams').valueChanges())
+
+
 
   }
 

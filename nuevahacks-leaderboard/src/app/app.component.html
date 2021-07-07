@@ -1,32 +1,51 @@
-<!-- <h1>
-  Hello
-</h1> -->
 
-<!-- <div>
-  <h1>Leaderboard</h1>
+<div class="page-head">
+<h3 class="title">Schoolhacks Leaderboard</h3>
+</div>
 
-  <ul>
-    <li class="text" *ngFor="let item of items | async">
-      {{item.name}}
-    </li>
-  </ul>
-</div> -->
+<div class="page-body">
 
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <!-- <th scope="col">#</th> -->
-      <th scope="col">Name</th>
-      <th scope="col">Points</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let item of items | async; index as i">
-      <!-- <th scope="row">{{ i + 1 }}</th> -->
+  <div class="leaderboard-wrapper">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <!-- <th scope="col">#</th> -->
+          <th scope="col">Name</th>
+          <th scope="col">Points</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let team of teams | async; index as i">
+          <!-- <th scope="row">{{ i + 1 }}</th> -->
+          
+          <td>{{ team.name }}</td>
+          <td>{{ team.points }}</td>
+        </tr>
+        </tbody>
+      </table>
+  </div>
+  
+  <div class="leaderboard-tasks">
+    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+      <ngb-panel *ngFor="let task of tasks | async">
+        <ng-template ngbPanelTitle>
+          <span class="tasktitle">{{task['title']}} - {{task['points']}}</span>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <p>
+            {{task['description']}}
+          </p>
+          <div>
+            <a [href]="task['link']">Start Challenge</a>
+            --
+            <span> {{task['completed']}} teams have completed</span>
+          </div>
+        </ng-template>
+      </ngb-panel>
       
-      <td>{{ item.name }}</td>
-      <td>{{ item.points }}</td>
-    </tr>
-    </tbody>
-  </table>
+    </ngb-accordion>
+
+
+  </div>
+  
+</div>

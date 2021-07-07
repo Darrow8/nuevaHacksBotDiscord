@@ -1,0 +1,40 @@
+.leaderboard-wrapper{
+    width: 60%;
+    flex-grow: 1;
+    padding: 10px;
+
+}
+
+.leaderboard-tasks{
+    width: 40%;
+    flex-grow: 1;
+    padding: 10px;
+
+}
+
+.page-body{
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.page-head{
+    text-align: center;
+    margin: auto;
+    height: 10vh;
+}
+
+.title{
+    line-height: 14px;
+    height:5vh;
+    margin: 0px;
+    vertical-align: middle;
+    padding: 3vh;
+    text-align: center;
+}
+.tasktitle{
+    font-weight: bold;
+}
